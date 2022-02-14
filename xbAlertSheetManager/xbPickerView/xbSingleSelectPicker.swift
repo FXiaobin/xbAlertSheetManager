@@ -28,7 +28,7 @@ class xbSingleSelectPicker: xbAlertSheetBaseView {
         }
     }
     
-    var xb_selectedTitle: String = "" {
+    public var xb_selectedTitle: String = "" {
         didSet {
             for (i,item) in dataArr.enumerated() {
                 if item as! String == xb_selectedTitle {
@@ -58,14 +58,14 @@ class xbSingleSelectPicker: xbAlertSheetBaseView {
         }
     }
     
-    convenience init(frame: CGRect, pickeList:[Any] = [], defaultVaule: String = "", completed: ((xbSingleSelectPicker,String,Int) -> ())?) {
+    public convenience init(frame: CGRect, pickeList:[Any] = [], defaultVaule: String = "", completed: ((xbSingleSelectPicker,String,Int) -> ())?) {
         self.init(frame: frame)
         
         setupUI(pickeList: pickeList, defaultVaule: defaultVaule, completed: completed)
     
     }
    
-    fileprivate func setupUI(pickeList:[Any] = [], defaultVaule: String = "", completed: ((xbSingleSelectPicker,String,Int) -> ())?) {
+    public  func setupUI(pickeList:[Any] = [], defaultVaule: String = "", completed: ((xbSingleSelectPicker,String,Int) -> ())?) {
         self.didSelectRowBlock = completed
         
         self.backgroundColor = UIColor.white
@@ -161,11 +161,11 @@ extension xbSingleSelectPicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return self.dataArr[row] as? String
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 44.0
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         /*
         //设置分割线的颜色

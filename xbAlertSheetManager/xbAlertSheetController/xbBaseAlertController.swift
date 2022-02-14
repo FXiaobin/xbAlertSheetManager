@@ -7,7 +7,7 @@
 
 import UIKit
 
-class xbBaseAlertController: UIViewController {
+public class xbBaseAlertController: UIViewController {
 
     var xb_tapClose: Bool = false
     
@@ -22,7 +22,7 @@ class xbBaseAlertController: UIViewController {
         }
     }
         
-    private lazy var bgButton: UIButton = {
+    fileprivate lazy var bgButton: UIButton = {
         let btn: UIButton = UIButton(frame: self.view.bounds)
         btn.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         btn.adjustsImageWhenHighlighted = false
@@ -32,7 +32,7 @@ class xbBaseAlertController: UIViewController {
     }()
     
     /** 状态栏样式*/
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    public override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
    
@@ -54,13 +54,13 @@ class xbBaseAlertController: UIViewController {
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
 //        show()
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -98,7 +98,7 @@ class xbBaseAlertController: UIViewController {
     
     
     // MARK: 背景点击事件
-    @objc private func bgButtonAction(sender: UIButton) -> () {
+    @objc fileprivate func bgButtonAction(sender: UIButton) -> () {
         if !self.xb_tapClose {
             return
         }
@@ -108,18 +108,13 @@ class xbBaseAlertController: UIViewController {
     // MARK: 自定义视图的显示和隐藏
     
     /** present出弹窗*/
-    func xb_showAlertController() {
+    func xb_showAlertController(completed: (() -> Void)? = nil) {
         
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
             rootViewController.present(self, animated: false) {
-                self.xb_show()
+                self.xb_show(completed: completed)
             }
         }
-    }
-    
-    /** 显示底部弹窗 */
-    private func xb_show(){
-        xb_show(completed: nil)
     }
     
     /** 显示底部弹窗（带回调）*/

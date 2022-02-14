@@ -37,7 +37,7 @@ class xbStartEndDatePicker: xbAlertSheetBaseView {
     private var selectedTitle: String = ""
     
     /** 外部设置默认选中的年月， 用逗号分割, 1922年05月至06月 1922,05,06*/
-    var defaultTitle: String? {
+    public var defaultTitle: String? {
         didSet{
             guard let title = defaultTitle else { return }
             
@@ -66,7 +66,7 @@ class xbStartEndDatePicker: xbAlertSheetBaseView {
     }
     
     /** defaultVaule 默认选中的年月， 用逗号分割, 1922年05月至06月 1922,05,06*/
-    convenience init(frame: CGRect, defaultVaule: String = "", completed: xbStartEndDatePickerBlock?) {
+    public convenience init(frame: CGRect, defaultVaule: String = "", completed: xbStartEndDatePickerBlock?) {
         self.init(frame: frame)
         self.backgroundColor = UIColor.white
         
@@ -103,7 +103,7 @@ class xbStartEndDatePicker: xbAlertSheetBaseView {
         
     }
 
-    private func setupUI(withDefaultValue: String) {
+    public func setupUI(withDefaultValue: String) {
         
         // 圆角
 //        xb_alertSheetBaseCornersByRounding(rectCorner: [.topLeft, .topRight], cornerRadius: 10.0)
@@ -227,7 +227,7 @@ extension xbStartEndDatePicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return (arr as AnyObject).count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let arr = self.dataArr[component] as! [String]
         var title = arr[row]
         if component == 0 {
@@ -238,7 +238,7 @@ extension xbStartEndDatePicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return title
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 44.0
     }
     
@@ -249,7 +249,7 @@ extension xbStartEndDatePicker: UIPickerViewDelegate,UIPickerViewDataSource{
 //        return (UIScreen.main.bounds.size.width / 3.0 * 2) / 3.0
 //    }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         /*
         //设置分割线的颜色

@@ -19,23 +19,15 @@ class xbBaseSheetListController: xbBaseSheetController {
 
     typealias BaseSheetListBlock = ((xbBaseSheetListController, Int) -> Void)
     
-    var didSelectRowAtBlock: BaseSheetListBlock? = nil
-    var btnActionBlock: BaseSheetListBlock? = nil
+    fileprivate var didSelectRowAtBlock: BaseSheetListBlock?
+    fileprivate var btnActionBlock: BaseSheetListBlock?
     
+    public var showCancelBtn = false
+    public var rowHeight: CGFloat = 50.0
     
-    var showCancelBtn = false
+    public var dataArr: [Any] = []
     
-    
-    var rowHeight: CGFloat = 50.0
-    
-    
-    var dataArr: [Any] = [] {
-        didSet{
-            
-        }
-    }
-    
-    convenience init(withTitle: String?, didSelectedIndex: BaseSheetListBlock?, btnAction: BaseSheetListBlock?) {
+    public convenience init(withTitle: String?, didSelectedIndex: BaseSheetListBlock?, btnAction: BaseSheetListBlock?) {
         self.init()
         self.titleLabel.text = withTitle
         self.didSelectRowAtBlock = didSelectedIndex
@@ -44,12 +36,12 @@ class xbBaseSheetListController: xbBaseSheetController {
     
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -58,7 +50,7 @@ class xbBaseSheetListController: xbBaseSheetController {
         
     }
     
-    @objc func sheetListBtnAction(sender: UIButton) {
+    @objc fileprivate func sheetListBtnAction(sender: UIButton) {
         let index = sender.tag - 1000
         self.xb_dismiss()
         
@@ -74,7 +66,7 @@ class xbBaseSheetListController: xbBaseSheetController {
         
     }
     
-    override func xb_customMyContentView() {
+    public override func xb_customMyContentView() {
         // super.customMyContentView()
         
         // 1. 初始化自定义视图
@@ -100,7 +92,7 @@ class xbBaseSheetListController: xbBaseSheetController {
     }
     
     // 模拟网络请求 子类需重写来获取数据更新列表高度
-    func xb_loadListData() {
+    public func xb_loadListData() {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             for _  in 0..<10 {
@@ -114,7 +106,7 @@ class xbBaseSheetListController: xbBaseSheetController {
     }
     
     /** 更新contentView的frame*/
-    func xb_updateContentViewRect() {
+    public func xb_updateContentViewRect() {
         
         guard var frame = self.xb_contentView?.frame else {
             return
@@ -145,17 +137,17 @@ class xbBaseSheetListController: xbBaseSheetController {
     }
     
     // 子类可重写来更新圆角设置
-    func xb_updateSheetCorners() {
+    public func xb_updateSheetCorners() {
         self.xb_sheetCornersByRounding(rectCorner: [.topLeft, .topRight], cornerRadius: 10.0)
     }
     
-    func xb_showSheetListController() {
+    public func xb_showSheetListController() {
         super.xb_showSheetController(showType: .fromBottom)
         
         xb_loadListData()
     }
     
-    private func setupUI(){
+    public func setupUI(){
         self.xb_contentView?.addSubview(self.topView)
         self.topView.addSubview(self.titleLabel)
         self.topView.addSubview(self.closeBtn)
@@ -205,7 +197,7 @@ class xbBaseSheetListController: xbBaseSheetController {
         
     }
 
-    private lazy var topView: UIView = {
+    internal lazy var topView: UIView = {
         let topV = UIView(frame: CGRect(x: 0, y: 0, width: self.xb_contentView!.bounds.width, height: kSheetListTop_H))
         topV.backgroundColor = UIColor.white
         
@@ -213,7 +205,7 @@ class xbBaseSheetListController: xbBaseSheetController {
     }()
 
     // MARK: 懒加载 列表
-    private lazy var tableView: UITableView = {
+    internal lazy var tableView: UITableView = {
         let table = UITableView(frame: CGRect(x: 0, y: kSheetListTop_H, width: self.xb_contentView!.bounds.width, height: self.xb_contentView!.bounds.height - kSheetListTop_H), style: .plain)
         table.delegate = self
         table.dataSource = self
@@ -224,7 +216,7 @@ class xbBaseSheetListController: xbBaseSheetController {
         return table
     }()
     
-    lazy var cancelBtn: UIButton = {
+    internal lazy var cancelBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("取消", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
@@ -236,7 +228,7 @@ class xbBaseSheetListController: xbBaseSheetController {
         return btn
     }()
 
-    lazy var closeBtn: UIButton = {
+    internal lazy var closeBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("关闭", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15.0)
@@ -247,7 +239,7 @@ class xbBaseSheetListController: xbBaseSheetController {
         return btn
     }()
     
-    lazy var titleLabel: UILabel = {
+    internal lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "请选择"
         label.textAlignment = .center
@@ -261,11 +253,11 @@ class xbBaseSheetListController: xbBaseSheetController {
 
 
 extension xbBaseSheetListController: UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArr.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
         cell.backgroundColor = UIColor.orange
@@ -273,7 +265,7 @@ extension xbBaseSheetListController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         xb_dismiss()
         if let block = self.didSelectRowAtBlock {
             block(self, indexPath.row)

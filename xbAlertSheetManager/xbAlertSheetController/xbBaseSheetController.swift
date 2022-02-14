@@ -17,7 +17,7 @@ enum xbBaseSheetControllerPopType {
 private let kWidth = UIScreen.main.bounds.size.width
 private let kHeight = UIScreen.main.bounds.size.height
 
-class xbBaseSheetController: UIViewController {
+public class xbBaseSheetController: UIViewController {
 
     var xb_tapClose: Bool = true
     var xb_showCornerRad: Bool = true
@@ -36,7 +36,7 @@ class xbBaseSheetController: UIViewController {
     }()
     
     /** 状态栏样式*/
-    override var preferredStatusBarStyle: UIStatusBarStyle{
+    public override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
    
@@ -56,12 +56,12 @@ class xbBaseSheetController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -96,7 +96,7 @@ class xbBaseSheetController: UIViewController {
    
     
     // MARK: 背景点击事件
-    @objc func bgButtonAction(sender: UIButton) -> () {
+    @objc fileprivate func bgButtonAction(sender: UIButton) -> () {
         if !self.xb_tapClose {
             return
         }
@@ -118,7 +118,7 @@ class xbBaseSheetController: UIViewController {
  
     /** 显示底部弹窗（带回调）*/
     // block类型仿照系统模态
-    private func xb_show(popType: xbBaseSheetControllerPopType = .fromBottom, completed: (() -> Void)? = nil) {
+    fileprivate func xb_show(popType: xbBaseSheetControllerPopType = .fromBottom, completed: (() -> Void)? = nil) {
         
         guard let _ = self.xb_contentView else {
             return
@@ -279,7 +279,7 @@ class xbBaseSheetController: UIViewController {
    
 }
 
-extension xbBaseSheetController {
+public extension xbBaseSheetController {
     /** 自定义视图圆角(forView:必须要线设置size) .allCorners 或者 [.topLeft, .topRight, .bottomLeft, .bottomRight]*/
     func xb_sheetCornersByRounding(rectCorner: UIRectCorner, cornerRadius: CGFloat) -> () {
         

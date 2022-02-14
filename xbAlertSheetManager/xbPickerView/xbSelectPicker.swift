@@ -17,7 +17,7 @@ class xbSelectPicker: xbAlertSheetBaseView {
     
     typealias XBSelectedPickerViewBlock = ((xbSelectPicker, [String], [Int]) -> Void)
     
-    var didSelectRowBlock: XBSelectedPickerViewBlock?
+    fileprivate var didSelectRowBlock: XBSelectedPickerViewBlock?
     
     fileprivate var dataArr: [[String]] = [[]] {
         didSet{
@@ -25,7 +25,7 @@ class xbSelectPicker: xbAlertSheetBaseView {
         }
     }
     
-    var selectedTitles: [String] = [] {
+    public var selectedTitles: [String] = [] {
         didSet {
             for (i, item) in selectedTitles.enumerated() {
                 let subArr = dataArr[i]
@@ -55,13 +55,13 @@ class xbSelectPicker: xbAlertSheetBaseView {
         }
     }
     
-    convenience init(frame: CGRect, pickeList:[[String]] = [[]], defaultVaule: [String] = [], completed: XBSelectedPickerViewBlock?){
+    public convenience init(frame: CGRect, pickeList:[[String]] = [[]], defaultVaule: [String] = [], completed: XBSelectedPickerViewBlock?){
         self.init(frame: frame)
         
         setupUI(pickeList: pickeList, defaultVaule: defaultVaule, completed: completed)
     }
    
-    fileprivate func setupUI(pickeList:[[String]] = [[]], defaultVaule: [String] = [], completed: XBSelectedPickerViewBlock?) {
+    public func setupUI(pickeList:[[String]] = [[]], defaultVaule: [String] = [], completed: XBSelectedPickerViewBlock?) {
         self.didSelectRowBlock = completed
         
         self.backgroundColor = UIColor.white
@@ -126,7 +126,7 @@ class xbSelectPicker: xbAlertSheetBaseView {
     }
 
     
-    @objc func pickerViewBtnAction(sender: UIButton) {
+    @objc fileprivate func pickerViewBtnAction(sender: UIButton) {
         
         self.xb_dismiss()
         
@@ -156,11 +156,11 @@ extension xbSelectPicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return subArr[row]
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40.0
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         /*
         //设置分割线的颜色

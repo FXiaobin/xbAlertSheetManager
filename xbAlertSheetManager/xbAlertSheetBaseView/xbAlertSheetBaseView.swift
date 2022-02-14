@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum xbAlertSheetBaseViewType {
+public enum xbAlertSheetBaseViewType {
     case alert
     case fromBottom
     case fromTop
@@ -15,7 +15,7 @@ enum xbAlertSheetBaseViewType {
     case fromeRight
 }
 
-class xbAlertSheetBaseView: UIView {
+public class xbAlertSheetBaseView: UIView {
 
     fileprivate var maskBg: UIView?
     
@@ -38,7 +38,7 @@ class xbAlertSheetBaseView: UIView {
 }
 
 
-extension xbAlertSheetBaseView {
+public extension xbAlertSheetBaseView {
 
     @objc fileprivate func bgViewAction() -> () {
         self.xb_dismiss()

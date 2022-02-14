@@ -29,8 +29,8 @@ class xbDatePickerView: xbAlertSheetBaseView {
     
     var didSelectRowBlock: XBDatePickerViewBlock?
     
-    var maxDate: Date?
-    var minDate: Date?
+    public var maxDate: Date?
+    public var minDate: Date?
     ///获取最小日期
     private var minDateCom: DateComponents? {
         if let min = minDate {
@@ -146,7 +146,7 @@ class xbDatePickerView: xbAlertSheetBaseView {
         }
     }
     
-    var selectedDate: String = "" {
+    public var selectedDate: String = "" {
         didSet {
             
             switch pickerType {
@@ -418,7 +418,7 @@ class xbDatePickerView: xbAlertSheetBaseView {
         }
     }
     
-    convenience init(frame: CGRect, defaultVaule: String = "", type: xbDatePickerViewType, completed: XBDatePickerViewBlock?){
+    public convenience init(frame: CGRect, defaultVaule: String = "", type: xbDatePickerViewType, completed: XBDatePickerViewBlock?){
         self.init(frame: frame)
         
         setupUI(defaultVaule: defaultVaule, type: type, completed: completed)
@@ -440,7 +440,7 @@ class xbDatePickerView: xbAlertSheetBaseView {
     }
   
    
-    fileprivate func setupUI(defaultVaule: String = "", type: xbDatePickerViewType, completed: XBDatePickerViewBlock?) {
+    public  func setupUI(defaultVaule: String = "", type: xbDatePickerViewType, completed: XBDatePickerViewBlock?) {
         self.didSelectRowBlock = completed
         pickerType = type
         
@@ -586,11 +586,11 @@ extension xbDatePickerView: UIPickerViewDelegate,UIPickerViewDataSource{
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40.0
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         /*
         //设置分割线的颜色
@@ -671,7 +671,7 @@ extension xbDatePickerView: UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
     
-    func maxMinDateUpdate(animated: Bool) {
+    public func maxMinDateUpdate(animated: Bool) {
         let selYear = pickerView!.selectedRow(inComponent: 0)
         let selMonth = pickerView!.selectedRow(inComponent: 1)
         let selDay = pickerView!.selectedRow(inComponent: 2)
