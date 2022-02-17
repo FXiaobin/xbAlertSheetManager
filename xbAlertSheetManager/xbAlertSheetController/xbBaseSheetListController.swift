@@ -15,19 +15,19 @@ private let kHeight = UIScreen.main.bounds.size.height
 private let kSafeBottomH: CGFloat = ((UIApplication.shared.statusBarFrame.size.height > 20.0) ? 34.0 : 0.0)
 private let kNavH: CGFloat = ((UIApplication.shared.statusBarFrame.size.height > 20.0) ? 88.0 : 64.0)
 
-class xbBaseSheetListController: xbBaseSheetController {
+public class xbBaseSheetListController: xbBaseSheetController {
 
-    typealias BaseSheetListBlock = ((xbBaseSheetListController, Int) -> Void)
+    public typealias xbBaseSheetListBlock = ((xbBaseSheetListController, Int) -> Void)
     
-    fileprivate var didSelectRowAtBlock: BaseSheetListBlock?
-    fileprivate var btnActionBlock: BaseSheetListBlock?
+    fileprivate var didSelectRowAtBlock: xbBaseSheetListBlock?
+    fileprivate var btnActionBlock: xbBaseSheetListBlock?
     
     public var showCancelBtn = false
     public var rowHeight: CGFloat = 50.0
     
-    public var dataArr: [Any] = []
+    var dataArr: [Any] = []
     
-    public convenience init(withTitle: String?, didSelectedIndex: BaseSheetListBlock?, btnAction: BaseSheetListBlock?) {
+    public convenience init(withTitle: String?, didSelectedIndex: xbBaseSheetListBlock?, btnAction: xbBaseSheetListBlock?) {
         self.init()
         self.titleLabel.text = withTitle
         self.didSelectRowAtBlock = didSelectedIndex
@@ -265,7 +265,7 @@ extension xbBaseSheetListController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
-    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         xb_dismiss()
         if let block = self.didSelectRowAtBlock {
             block(self, indexPath.row)

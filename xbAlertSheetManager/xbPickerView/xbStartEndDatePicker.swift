@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class xbStartEndDatePicker: xbAlertSheetBaseView {
+public class xbStartEndDatePicker: xbAlertSheetBaseView {
 
     var cancelBtn: UIButton?
     var sureBtn: UIButton?
@@ -17,7 +17,7 @@ class xbStartEndDatePicker: xbAlertSheetBaseView {
     private var myPickerView: UIPickerView?
    
     /**按钮tag 年份 中间月份 右边月份 title*/
-    typealias xbStartEndDatePickerBlock = ((xbStartEndDatePicker,Int,String,String,String,String) -> ())
+    public typealias xbStartEndDatePickerBlock = ((xbStartEndDatePicker,Int,String,String,String,String) -> ())
     private var pickerViewBtnActionBlock: xbStartEndDatePickerBlock?
     
     
@@ -176,7 +176,7 @@ class xbStartEndDatePicker: xbAlertSheetBaseView {
         }
     }
     
-    func didSeletedPickerView(pickerView: UIPickerView) {
+    public func didSeletedPickerView(pickerView: UIPickerView) {
         
         let yearRow = pickerView.selectedRow(inComponent: 0)
         let yearArr = self.dataArr[0] as! [String]
@@ -214,11 +214,11 @@ class xbStartEndDatePicker: xbAlertSheetBaseView {
 
 
 extension xbStartEndDatePicker: UIPickerViewDelegate,UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return self.dataArr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 2 {
             return 1
         }
@@ -272,7 +272,7 @@ extension xbStartEndDatePicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return titleLabel
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
        
         didSeletedPickerView(pickerView: myPickerView!)
         

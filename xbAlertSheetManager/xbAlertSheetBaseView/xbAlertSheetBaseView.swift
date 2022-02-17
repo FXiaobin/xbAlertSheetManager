@@ -21,9 +21,9 @@ public class xbAlertSheetBaseView: UIView {
     
     fileprivate var showType: xbAlertSheetBaseViewType = .alert
     
-    var maskBgAlpa: CGFloat = 0.3
+    public var maskBgAlpa: CGFloat = 0.3
     
-    var centerOffsetY: CGFloat = 0.0
+    public var centerOffsetY: CGFloat = 0.0
    
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class xbSingleSelectPicker: xbAlertSheetBaseView {
+public class xbSingleSelectPicker: xbAlertSheetBaseView {
 
     var cancelBtn: UIButton?
     var sureBtn: UIButton?
@@ -149,15 +149,15 @@ class xbSingleSelectPicker: xbAlertSheetBaseView {
 }
 
 extension xbSingleSelectPicker: UIPickerViewDelegate,UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return dataArr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.dataArr[row] as? String
     }
     
@@ -187,7 +187,7 @@ extension xbSingleSelectPicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return titleLabel
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let title = self.dataArr[row] as! String
         self.xb_selectedTitle = title
         

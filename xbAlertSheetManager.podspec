@@ -2,7 +2,7 @@
  Pod::Spec.new do |spec|
 
   spec.name         = "xbAlertSheetManager"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "xbAlertSheetManager."
   spec.description  = "常用弹窗基类，日期弹窗，选项列表弹窗，xbAlertSheetManager"
   

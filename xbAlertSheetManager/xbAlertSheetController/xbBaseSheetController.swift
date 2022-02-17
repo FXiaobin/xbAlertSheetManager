@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum xbBaseSheetControllerPopType {
+public enum xbBaseSheetControllerPopType {
     case fromBottom
     case fromTop
     case fromLeft
@@ -19,8 +19,8 @@ private let kHeight = UIScreen.main.bounds.size.height
 
 public class xbBaseSheetController: UIViewController {
 
-    var xb_tapClose: Bool = true
-    var xb_showCornerRad: Bool = true
+    public var xb_tapClose: Bool = true
+    public var xb_showCornerRad: Bool = true
     
     var xb_contentView: UIView?
     
@@ -74,7 +74,7 @@ public class xbBaseSheetController: UIViewController {
     }
     
     /// 子类需重写 来自定义自己要显示的视图
-    func xb_customMyContentView() {
+    public func xb_customMyContentView() {
         
         // 1. 初始化自定义视图
         let contentView = UIView(frame: CGRect(x: 0, y: 0, width: kWidth - 100, height: 200))
@@ -108,10 +108,10 @@ public class xbBaseSheetController: UIViewController {
     // MARK: 自定义视图的显示和隐藏
     
     /** present出弹窗*/
-    func xb_showSheetController(showType: xbBaseSheetControllerPopType = .fromBottom) {
+    public func xb_showSheetController(showType: xbBaseSheetControllerPopType = .fromBottom, completed: (() -> Void)? = nil) {
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
             rootViewController.present(self, animated: false) {
-                self.xb_show(popType: showType)
+                self.xb_show(popType: showType, completed: completed)
             }
         }
     }
@@ -224,13 +224,8 @@ public class xbBaseSheetController: UIViewController {
 
     }
     
-    /** 隐藏底部弹窗 */
-    func xb_dismiss(){
-        xb_dismiss(completed: nil)
-    }
-    
     /** 隐藏底部弹窗（带回调） */
-    func xb_dismiss(completed: (() -> Void)? = nil) {
+    public func xb_dismiss(completed: (() -> Void)? = nil) {
         guard let _ = self.xb_contentView else {
             return
         }

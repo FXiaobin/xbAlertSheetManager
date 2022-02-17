@@ -9,12 +9,12 @@ import UIKit
 
 public class xbBaseAlertController: UIViewController {
 
-    var xb_tapClose: Bool = false
+    public var xb_tapClose: Bool = false
     
     var xb_contentView: UIView?
     
     /** 中心Y偏移量，正数向下，负数向上*/
-    var xb_offSetY: CGFloat = 0.0{
+    public var xb_offSetY: CGFloat = 0.0{
         didSet{
             var center = self.view.center
             center.y += xb_offSetY
@@ -73,7 +73,7 @@ public class xbBaseAlertController: UIViewController {
     }
    
     /// 子类需重写 来自定义自己要显示的视图
-    func xb_customMyContentView() {
+    public func xb_customMyContentView() {
         
         // 1. 初始化自定义视图
         let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
@@ -108,7 +108,7 @@ public class xbBaseAlertController: UIViewController {
     // MARK: 自定义视图的显示和隐藏
     
     /** present出弹窗*/
-    func xb_showAlertController(completed: (() -> Void)? = nil) {
+    public func xb_showAlertController(completed: (() -> Void)? = nil) {
         
         if let rootViewController = UIApplication.shared.keyWindow?.rootViewController {
             rootViewController.present(self, animated: false) {
@@ -152,14 +152,9 @@ public class xbBaseAlertController: UIViewController {
         }
      //*/
     }
-    
-    /** 隐藏底部弹窗 */
-    func xb_dismiss(){
-        xb_dismiss(completed: nil)
-    }
-    
+   
     /** 隐藏底部弹窗（带回调） */
-    func xb_dismiss(completed: (() -> Void)? = nil) {
+    public func xb_dismiss(completed: (() -> Void)? = nil) {
         guard let _ = self.xb_contentView else {
             return
         }

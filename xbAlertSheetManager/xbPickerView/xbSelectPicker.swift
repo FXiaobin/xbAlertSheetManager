@@ -7,7 +7,7 @@
 
 import UIKit
 
-class xbSelectPicker: xbAlertSheetBaseView {
+public class xbSelectPicker: xbAlertSheetBaseView {
 
     fileprivate var cancelBtn: UIButton?
     fileprivate var sureBtn: UIButton?
@@ -15,7 +15,7 @@ class xbSelectPicker: xbAlertSheetBaseView {
     
     fileprivate var pickerView: UIPickerView?
     
-    typealias XBSelectedPickerViewBlock = ((xbSelectPicker, [String], [Int]) -> Void)
+    public typealias XBSelectedPickerViewBlock = ((xbSelectPicker, [String], [Int]) -> Void)
     
     fileprivate var didSelectRowBlock: XBSelectedPickerViewBlock?
     
@@ -142,16 +142,16 @@ class xbSelectPicker: xbAlertSheetBaseView {
 }
 
 extension xbSelectPicker: UIPickerViewDelegate,UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return dataArr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let subArr = dataArr[component]
         return subArr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let subArr = dataArr[component]
         return subArr[row]
     }
@@ -183,7 +183,7 @@ extension xbSelectPicker: UIPickerViewDelegate,UIPickerViewDataSource{
         return titleLabel
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         for (i,subArr) in dataArr.enumerated() {
             if i == component {

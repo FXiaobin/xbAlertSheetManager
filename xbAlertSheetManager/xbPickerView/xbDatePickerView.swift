@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum xbDatePickerViewType {
+public enum xbDatePickerViewType {
     case YMD        // 年月日
     case YMD_HM     // 年月日 时分
     case YMD_HMS    // 年月日 时分秒
@@ -15,7 +15,7 @@ enum xbDatePickerViewType {
     case HMS        // 时分秒
 }
 
-class xbDatePickerView: xbAlertSheetBaseView {
+public class xbDatePickerView: xbAlertSheetBaseView {
 
     fileprivate var cancelBtn: UIButton?
     fileprivate var sureBtn: UIButton?
@@ -25,7 +25,7 @@ class xbDatePickerView: xbAlertSheetBaseView {
     
     fileprivate var pickerType: xbDatePickerViewType = .YMD
     
-    typealias XBDatePickerViewBlock = ((xbDatePickerView, String) -> Void)
+    public typealias XBDatePickerViewBlock = ((xbDatePickerView, String) -> Void)
     
     var didSelectRowBlock: XBDatePickerViewBlock?
     
@@ -525,7 +525,7 @@ class xbDatePickerView: xbAlertSheetBaseView {
 }
 
 extension xbDatePickerView: UIPickerViewDelegate,UIPickerViewDataSource{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         switch pickerType {
         case .YMD, .HMS:
             return 3
@@ -550,7 +550,7 @@ extension xbDatePickerView: UIPickerViewDelegate,UIPickerViewDataSource{
         return daysArr
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         switch pickerType {
 
@@ -647,7 +647,7 @@ extension xbDatePickerView: UIPickerViewDelegate,UIPickerViewDataSource{
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         switch pickerType {
         case .YMD, .YMD_HMS, .YMD_HM:
